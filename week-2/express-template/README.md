@@ -6,8 +6,12 @@ steps
 
     > this will install all packages and create your node_modules
 
-2. touch .env
+2. enter 'git init'
+
+    > this will create a .git file which will allow you to connect your app to a repo on github
+
+3. touch .env
 
     > this will create a .env file which holds your private environment variables and any other variables that you want to keep secret when you push your app to github
 
-3. check the .gitignore to assure that you have '.env' and 'node_modules' set to be ignored when you push to a repo
+4. check the .gitignore to assure that you have '.env' and 'node_modules' set to be ignored when you push to a repo
