@@ -15,7 +15,7 @@ const app = express();
 // ========== MONGOOSE CONNECTION SETUP =============
 
 mongoose
-    .connect("mongodb://localhost/mongoose-example", { useNewUrlParser: true })
+    .connect("mongodb://localhost/express-template", { useNewUrlParser: true })
     .then((x) => {
         console.log(
             `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -46,7 +46,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // ============== GLOBAL VARIABLES ==================
 
 // default value for title local
-app.locals.title = "Mongoose Example";
+app.locals.title = "Express Template";
 
 // ============ END GLOBAL VARIABLES ================
 
