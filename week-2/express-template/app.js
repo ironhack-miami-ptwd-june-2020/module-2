@@ -15,7 +15,12 @@ const app = express();
 // ========== MONGOOSE CONNECTION SETUP =============
 
 mongoose
-    .connect("mongodb://localhost/express-template", { useNewUrlParser: true })
+    .connect("mongodb://localhost/express-template", {
+        useCreateIndex: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+    })
     .then((x) => {
         console.log(
             `Connected to Mongo! Database name: "${x.connections[0].name}"`
