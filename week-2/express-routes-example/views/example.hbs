@@ -1,0 +1,39 @@
+<h2>Examples</h2>
+
+<h3>The Info</h3>
+<form action="/examples/add" method="POST">
+    <button>Add Example</button>
+</form>
+<div>
+    {{#if multiples}}
+    {{#each info}}
+    <div>
+        <form action="/examples/update/{{_id}}" method="POST">
+            <label for="nameInput">name: <input id="nameInput" type="text" name="name" value="{{name}}"></label>
+            <label for="colorInput">name: <input id="colorInput" type="text" name="color" value="{{color}}"></label>
+            <label for="ageInput">name: <input id="ageInput" type="number" name="age" value="{{age}}"></label>
+            <button>Update Info</button>
+        </form>
+
+        <form action="/examples/delete/{{_id}}" method="POST">
+            <button>Delete Example</button>
+        </form>
+    </div>
+    <hr />
+    {{/each}}
+    {{else}}
+    <div>
+        <form action="/examples/update/{{info._id}}" method="POST">
+            <label for="nameInput">name: <input id="nameInput" type="text" name="name" value="{{info.name}}"></label>
+            <label for="colorInput">name: <input id="colorInput" type="text" name="color"
+                    value="{{info.color}}"></label>
+            <label for="ageInput">name: <input id="ageInput" type="number" name="age" value="{{info.age}}"></label>
+            <button>Update Info</button>
+        </form>
+
+        <form action="/examples/delete/{{info._id}}" method="POST">
+            <button>Delete Example</button>
+        </form>
+    </div>
+    {{/if}}
+</div>
