@@ -23,6 +23,7 @@
     {{/each}}
     {{else}}
     <div>
+        {{#if info}}
         <form action="/examples/update/{{info._id}}" method="POST">
             <label for="nameInput">name: <input id="nameInput" type="text" name="name" value="{{info.name}}"></label>
             <label for="colorInput">name: <input id="colorInput" type="text" name="color"
@@ -34,6 +35,7 @@
         <form action="/examples/delete/{{info._id}}" method="POST">
             <button>Delete Example</button>
         </form>
+        {{/if}}
     </div>
     {{/if}}
 </div>
