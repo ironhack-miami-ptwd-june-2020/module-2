@@ -16,7 +16,7 @@ const app = express();
 // ========== MONGOOSE CONNECTION SETUP =============
 
 mongoose
-    .connect("mongodb://localhost/express-template", {
+    .connect("mongodb://localhost/express-routes-example", {
         useCreateIndex: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -55,7 +55,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // ============== GLOBAL VARIABLES ==================
 
 // default value for title local
-app.locals.title = "Express Template";
+app.locals.title = "Express Routes Example";
 
 // ============ END GLOBAL VARIABLES ================
 
@@ -63,7 +63,7 @@ app.locals.title = "Express Template";
 
 // ===================== ROUTES =====================
 app.use("/", require("./routes/index"));
-
+app.use("/examples", require("./routes/example"));
 // =================== END ROUTES ===================
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --
