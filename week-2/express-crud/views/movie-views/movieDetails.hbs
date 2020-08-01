@@ -1,0 +1,27 @@
+<h2>{{movie.title}}</h2>
+
+<img src="{{movie.coverImage}}" alt="Cover image for {{movie.title}}">
+
+<p>{{movie.description}}</p>
+<h4>Rating: {{movie.rating}}</h4>
+<h4>Year: {{movie.year}}</h4>
+<h4>Genre: {{movie.genre}}</h4>
+{{#if movie.remake}}
+<h4>This movie is a Remake of the original</h4>
+{{else}}
+<h4>This is an original movie</h4>
+{{/if}}
+
+
+<form action="/movies/delete/{{movie._id}}" method="post"><button>Delete</button></form>
+
+
+<div>
+    <h3>Cast</h3>
+    {{#each movie.cast}}
+    <div>
+        <h3>{{firstName}} {{lastName}}</h3>
+        <h4>Role: {{role}}</h4>
+    </div>
+    {{/each}}
+</div>

@@ -1,0 +1,45 @@
+body {
+    padding-top: 4vw;
+}
+
+nav {
+    background-color: slategrey;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4vw;
+    width: 98vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1vw;
+}
+
+nav div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav a {
+    margin: 2px;
+}
+
+.movieContainer {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.movieBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 14vw;
+}
+
+.movieBox > a > img {
+    height: 19vw;
+    width: 13vw;
+}

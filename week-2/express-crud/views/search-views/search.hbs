@@ -1,0 +1,10 @@
+<h2>Search Results</h2>
+
+<div class="movieContainer">
+    {{#each searchResults}}
+    <div class="movieBox">
+        <a href="/movies/details/{{_id}}"><img src="{{coverImage}}" alt="Cover image for {{title}}"></a>
+        <h3>{{title}}</h3>
+    </div>
+    {{/each}}
+</div>

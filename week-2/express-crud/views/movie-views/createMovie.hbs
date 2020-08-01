@@ -1,0 +1,15 @@
+<h2>Create A Movie</h2>
+
+<form action="/movies/create" method="post">
+    <label for="titleInput">Title: <input id="titleInput" name="title" type="text" placeholder="John Wick"></label>
+    <br>
+    <label for="remakeInput">Is this a remake: Yes<input id="remakeInput" name="remake" type="radio"
+            value='true'></label>
+    <label for="remakeInput">No<input id="remakeInput" name="remake" type="radio" value='false'></label>
+    <br>
+    <label for="yearInput">Year: <input id="yearInput" name="year" type="number" placeholder="2020"></label>
+    <br>
+    <label for="imageInput">Image URL: <input id="imageInput" name="coverImage" type="text"></label>
+    <br>
+    <button>Add Movie</button>
+</form>
