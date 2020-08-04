@@ -12,7 +12,10 @@ const castSchema = new Schema(
         movies: {
             type: [{ type: Schema.Types.ObjectId, ref: "Movie" }],
         },
-        wonAward: Boolean,
+        wonAward: {
+            type: Boolean,
+            default: false,
+        },
         dob: String,
         role: {
             type: String,

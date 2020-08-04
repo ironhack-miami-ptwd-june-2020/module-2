@@ -1,0 +1,30 @@
+<h2>Add A Cast Member</h2>
+
+<form action="/casts/create" method="post">
+    <label for="firstnameInput">First Name: <input id="firstnameInput" name="theFirstName" type="text"
+            placeholder="Billy" required></label>
+    <br>
+    <label for="lastnameInput">Last Name: <input id="lastnameInput" name="theLastName" type="text" placeholder="Bob"
+            required></label>
+    <br>
+    <label for="ageInput">Age: <input id="ageInput" name="theAge" type="number" placeholder="35"></label>
+    <br>
+    <label for="awardWonInput">
+        Has Won Award? <input id="awardWonInput" name="awardWon" type="radio" value="true">
+    </label>
+    <br>
+    <div>
+        <label for="roleInput">Role: Actor<input id="roleInput" name="theRole" type="radio" value="Actor"></label>
+
+        <label for="roleInput">Director<input id="roleInput" name="theRole" type="radio" value="Director"></label>
+
+        <label for="roleInput">Extra<input id="roleInput" name="theRole" type="radio" value="Extra"></label>
+
+        <label for="roleInput">Producer<input id="roleInput" name="theRole" type="radio" value="Producer"></label>
+
+        <label for="roleInput">Writer<input id="roleInput" name="theRole" type="radio" value="Writer"></label>
+    </div>
+
+    <br>
+    <button>Create Cast Member</button>
+</form>

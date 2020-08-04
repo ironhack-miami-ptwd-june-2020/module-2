@@ -1,0 +1,11 @@
+<h2>Cast Members</h2>
+
+<button><a href="/casts/create">Create Cast Member</a></button>
+
+<div>
+    {{#each castMembers}}
+    <div>
+        <a href="/casts/details/{{_id}}">{{firstName}} {{lastName}}</a>
+    </div>
+    {{/each}}
+</div>
