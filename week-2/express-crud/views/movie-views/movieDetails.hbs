@@ -1,6 +1,6 @@
 <h2>{{movie.title}}</h2>
 
-<img src="{{movie.coverImage}}" alt="Cover image for {{movie.title}}">
+<img class="movieDetailsImage" src="{{movie.coverImage}}" alt="Cover image for {{movie.title}}">
 
 <p>{{movie.description}}</p>
 <h4>Rating: {{movie.rating}}</h4>
@@ -18,9 +18,11 @@
 
 <div>
     <h3>Cast</h3>
-    {{#each movie.cast}}
-    <div>
-        <h3>{{firstName}} {{lastName}}</h3>
+    {{#each movie.castMembers}}
+    <div class="castMemberBox">
+        <a href="/casts/details/{{_id}}">
+            <h3>{{firstName}} {{lastName}}</h3>
+        </a>
         <h4>Role: {{role}}</h4>
     </div>
     {{/each}}

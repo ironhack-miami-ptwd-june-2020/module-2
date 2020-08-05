@@ -25,6 +25,8 @@ nav a {
     margin: 2px;
 }
 
+/* movie styling */
+
 .movieContainer {
     display: flex;
     flex-flow: row wrap;
@@ -42,4 +44,26 @@ nav a {
 .movieBox > a > img {
     height: 19vw;
     width: 13vw;
+}
+
+.movieDetailsImage {
+    height: 30vw;
+}
+
+/* cast member styling */
+
+.castMemberBox {
+    border: 1px solid black;
+}
+
+/* search styling */
+
+.searchResultsContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.searchResultsContainer div:nth-child(n + 1) {
+    width: 45vw;
 }

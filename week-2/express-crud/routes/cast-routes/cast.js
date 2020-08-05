@@ -7,7 +7,7 @@ const Movie = require("../../models/movie");
 router.get("/", (req, res, next) => {
     Cast.find()
         .then((castMembers) => {
-            console.log({ castMembers });
+            // console.log({ castMembers });
             res.render("cast-views/casts", { castMembers });
         })
         .catch((err) =>
@@ -32,7 +32,7 @@ router.post("/create", (req, res, next) => {
 
     Cast.create(castMember)
         .then((newlyCreatedCastMember) => {
-            console.log({ newlyCreatedCastMember });
+            // console.log({ newlyCreatedCastMember });
             res.redirect(`/casts/details/${newlyCreatedCastMember._id}`);
         })
         .catch((err) => console.log(`Error creating a cast member: ${err}`));
@@ -64,7 +64,7 @@ router.get("/details/edit/:castMemberId", (req, res, next) => {
 
 /* GET see the details of the cast member */
 router.get("/details/:castMemberId", (req, res, next) => {
-    console.log({ theId: req.params.castMemberId });
+    // console.log({ theId: req.params.castMemberId });
     Cast.findById(req.params.castMemberId)
         .populate("movies")
         .then((castMemberFromDB) => {
@@ -72,7 +72,7 @@ router.get("/details/:castMemberId", (req, res, next) => {
                 ...castMemberFromDB,
                 edit: false,
             };
-            console.log({ castMemberFromDB });
+            // console.log({ castMemberFromDB });
             res.render("cast-views/cast-details", data);
         })
         .catch((err) =>
@@ -82,37 +82,25 @@ router.get("/details/:castMemberId", (req, res, next) => {
 
 /* POST update the information for the cast member */
 router.post("/update/:castMemberId", (req, res, next) => {
-    console.log({ update: req.body });
+    // console.log({ update: req.body });
     Cast.findByIdAndUpdate(req.params.castMemberId, req.body, { new: true })
         .then((updatedCastMember) => {
-            Movie.find({ _id: { $in: movies } })
+            Movie.find({ _id: { $in: updatedCastMember.movies } })
                 .then(async (moviesArray) => {
-                    console.log({ moviesArray });
+                    // console.log({ moviesArray });
 
                     // loop through each movie in the array ov movies that belongs to the cast member and add the castMembers array from the movie.
-                    await moviesArray
-                        .forEach(async (movie) => {
-                            if (
-                                !movie.castMembers.includes(
-                                    req.params.castMemberId
-                                )
-                            ) {
-                                // save the movie info in the database once the cast member id has been added the list of castMembers in the movie
-                                movie.castMembers.push(req.params.castMemberId);
-                                await movie.save();
-                            }
-                        })
-                        .then((updatedMovies) => {
-                            console.log({ updatedMovies });
-                            res.redirect(
-                                `/casts/details/${updatedCastMember._id}`
-                            );
-                        })
-                        .catch((err) =>
-                            console.log(
-                                `Error adding cast member id to movies: ${err}`
-                            )
-                        );
+                    await moviesArray.forEach(async (movie) => {
+                        if (
+                            !movie.castMembers.includes(req.params.castMemberId)
+                        ) {
+                            // save the movie info in the database once the cast member id has been added the list of castMembers in the movie
+                            movie.castMembers.push(req.params.castMemberId);
+                            await movie.save();
+                        }
+                    });
+
+                    res.redirect(`/casts/details/${updatedCastMember._id}`);
                 })
                 .catch((err) =>
                     console.log(
@@ -131,7 +119,31 @@ router.post("/remove-movie/:castMemberId/:movieId", (req, res, next) => {
             castMember
                 .save()
                 .then((updatedCastMember) => {
-                    res.redirect(`/casts/details/${updatedCastMember._id}`);
+                    Movie.findById(req.params.movieId)
+                        .then((movieToRemoveCastMember) => {
+                            movieToRemoveCastMember.castMembers.pull(
+                                req.params.castMemberId
+                            );
+                            movieToRemoveCastMember
+                                .save()
+                                .then((updatedMovie) => {
+                                    // console.log({ updatedMovie });
+
+                                    res.redirect(
+                                        `/casts/details/${updatedCastMember._id}`
+                                    );
+                                })
+                                .catch((err) =>
+                                    console.log(
+                                        `Error removing cast member id from movie casts array: ${err}`
+                                    )
+                                );
+                        })
+                        .catch((err) =>
+                            console.log(
+                                `Error finding movie to remove cast member from: ${err}`
+                            )
+                        );
                 })
                 .catch((err) =>
                     console.log(`Error removing movie from cast member: ${err}`)

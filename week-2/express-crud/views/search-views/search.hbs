@@ -1,10 +1,22 @@
 <h2>Search Results</h2>
 
-<div class="movieContainer">
-    {{#each searchResults}}
-    <div class="movieBox">
-        <a href="/movies/details/{{_id}}"><img src="{{coverImage}}" alt="Cover image for {{title}}"></a>
-        <h3>{{title}}</h3>
+<div class="searchResultsContainer">
+    <div class="movieContainer">
+        <h2>Movie Results</h2>
+        {{#each movieResults}}
+        <div class="movieBox">
+            <a href="/movies/details/{{_id}}"><img src="{{coverImage}}" alt="Cover image for {{title}}"></a>
+            <h3>{{title}}</h3>
+        </div>
+        {{/each}}
     </div>
-    {{/each}}
+
+    <div>
+        <h2>Cast Member Results</h2>
+        {{#each castResults}}
+        <div>
+            <a href="/casts/details/{{_id}}">{{firstName}} {{lastName}}</a>
+        </div>
+        {{/each}}
+    </div>
 </div>

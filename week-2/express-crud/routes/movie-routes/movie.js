@@ -6,7 +6,7 @@ const Movie = require("../../models/movie");
 router.get("/", (req, res, next) => {
     Movie.find()
         .then((movies) => {
-            console.log({ movies });
+            // console.log({ movies });
             res.render("movie-views/movies", { movies });
         })
         .catch((err) => console.log(`Error Finding Movies: ${err}`));
@@ -19,7 +19,7 @@ router.get("/create", (req, res, next) => {
 
 /* POST create movie page */
 router.post("/create", (req, res, next) => {
-    console.log({ body: req.body });
+    // console.log({ body: req.body });
     Movie.create(req.body)
         .then((createdMovie) => {
             res.render("movie-views/movieDetails", { movie: createdMovie });
@@ -30,6 +30,7 @@ router.post("/create", (req, res, next) => {
 /* GET movie details page */
 router.get("/details/:movieId", (req, res, next) => {
     Movie.findById(req.params.movieId)
+        .populate("castMembers")
         .then((movieFromDb) => {
             res.render("movie-views/movieDetails", { movie: movieFromDb });
         })
@@ -40,7 +41,7 @@ router.get("/details/:movieId", (req, res, next) => {
 router.post("/update/:movieId", (req, res, next) => {
     Movie.findByIdAndUpdate(req.params.movieId, req.body, { new: true })
         .then((updatedMovie) => {
-            console.log({ updatedMovie });
+            // console.log({ updatedMovie });
 
             // use redirect('back') to redirect to the page you were just on
             res.redirect("back");
