@@ -1,0 +1,72 @@
+<h2>{{_doc.firstName}} {{_doc.lastName}}</h2>
+
+{{#if edit}}
+<form action="/casts/update/{{_doc._id}}" method="post">
+    <label for="firstNameInput">First Name: <input id="firstNameInput" name="firstName" type="text"
+            value="{{_doc.firstName}}"></label>
+
+    <label for="lastNameInput">Last Name: <input id="lastNameInput" name="lastName" type="text"
+            value="{{_doc.lastName}}"></label>
+
+    <label for="ageInputField">Age: <input id="ageInputField" name="age" type="number" value="{{_doc.age}}"></label>
+
+    <label for="dobInput">DOB: <input id="dobInput" name="dob" type="date" value="{{_doc.dob}}"></label>
+
+    {{#if _doc.wonAward}}
+    <label for="wonAwardInput">Won Award ? yes<input id="wonAwardInput" name="wonAward" type="radio" value="true"
+            checked></label>
+    <label for="wonAwardInput">no<input id="wonAwardInput" name="wonAward" type="radio" value="false"></label>
+    {{else}}
+    <label for="wonAwardInput">Won Award ? yes<input id="wonAwardInput" name="wonAward" type="radio"
+            value="true"></label>
+    <label for="wonAwardInput">no<input id="wonAwardInput" name="wonAward" type="radio" value="false" checked></label>
+    {{/if}}
+
+    <br>
+    <div>
+        {{#each movies}}
+        <div>
+            <input id="input{{@index}}" name="movies" type="checkbox" value="{{_id}}">
+            <label for="input{{@index}}">{{title}}</label>
+        </div>
+        {{/each}}
+    </div>
+
+    <button>Update</button>
+</form>
+
+{{else}}
+
+<h3>Age: {{_doc.age}}</h3>
+
+{{#if _doc.dob}}
+<h3>DOB: {{_doc.dob}}</h3>
+{{else}}
+<h3>DOB: UNKNOWN</h3>
+{{/if}}
+
+{{#if _doc.wonAward}}
+<h3>Has Won Awards</h3>
+{{else}}
+<h3>Has Not Won Any Awards</h3>
+{{/if}}
+
+<h3>Currently Working as: {{_doc.role}}</h3>
+
+<button><a href="/casts/details/edit/{{_doc._id}}">Edit Details</a></button>
+
+<br>
+
+<h3>Movies</h3>
+<br>
+<div class='movieBox'>
+    {{#each _doc.movies}}
+    <div class="movieBox">
+        <form action="/casts/remove-movie/{{../_doc._id}}/{{_id}}" method="post"><button>Remove</button></form>
+        <a href="/movies/details/{{_id}}"><img src="{{coverImage}}" alt="Cover image for {{title}}"></a>
+        <h3>{{title}}</h3>
+    </div>
+    {{/each}}
+</div>
+
+{{/if}}

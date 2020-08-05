@@ -1,0 +1,13 @@
+<h2>Movies List</h2>
+
+<a href="/movies/create">Create Movie</a>
+<br>
+<br>
+<div class="movieContainer">
+    {{#each movies}}
+    <div class="movieBox">
+        <a href="/movies/details/{{_id}}"><img src="{{coverImage}}" alt="Cover image for {{title}}"></a>
+        <h3>{{title}}</h3>
+    </div>
+    {{/each}}
+</div>

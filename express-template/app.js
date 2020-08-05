@@ -2,9 +2,10 @@
 require("dotenv").config();
 
 const express = require("express");
-const hbs = require("hbs");
-const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const path = require("path");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 const app = express();
 
@@ -14,22 +15,16 @@ const app = express();
 
 // ========== MONGOOSE CONNECTION SETUP =============
 
-mongoose
-    .connect("mongodb://localhost/express-template", { useNewUrlParser: true })
-    .then((x) => {
-        console.log(
-            `Connected to Mongo! Database name: "${x.connections[0].name}"`
-        );
-    })
-    .catch((err) => {
-        console.error("Error connecting to mongo", err);
-    });
+require("./config/mongoose-setup");
 
 // ======== END MONGOOSE CONNECTION SETUP ===========
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --
 
 // ============== MIDDLEWARE SETUP ==================
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // ============ END MIDDLEWARE SETUP ================
 
@@ -38,6 +33,16 @@ mongoose
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(
+    session({
+        secret: "yoursessionsecret",
+        resave: true,
+        saveUninitialized: true,
+        maxAge: new Date(Date.now() + 3600000),
+        store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    })
+);
 
 // ======= END EXPRESS VIEW ENGINE SET UP ===========
 
