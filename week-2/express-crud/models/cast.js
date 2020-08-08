@@ -1,34 +1,34 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
 const castSchema = new Schema(
-    {
-        firstName: {
-            type: String,
-            required: true,
-        },
-        lastName: String,
-        age: Number,
-        movies: {
-            type: [{ type: Schema.Types.ObjectId, ref: "Movie" }],
-        },
-        wonAward: {
-            type: Boolean,
-            default: false,
-        },
-        dob: String,
-        role: {
-            type: String,
-            enum: ["Actor", "Director", "Producer", "Writer", "Extra"],
-            required: true,
-        },
+  {
+    firstName: {
+      type: String,
+      required: true
     },
-    {
-        timestamps: true,
+    lastName: String,
+    age: Number,
+    movies: {
+      type: [{ type: Schema.Types.ObjectId, ref: 'Movie' }]
+    },
+    wonAward: {
+      type: Boolean,
+      default: false
+    },
+    dob: String,
+    role: {
+      type: String,
+      enum: ['Actor', 'Director', 'Producer', 'Writer', 'Extra'],
+      required: true
     }
+  },
+  {
+    timestamps: true
+  }
 );
 
-const Cast = model("Cast", castSchema);
+const Cast = model('Cast', castSchema);
 
 module.exports = Cast;
 
