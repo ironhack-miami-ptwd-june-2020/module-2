@@ -15,7 +15,15 @@
                 <a href="/">Home</a>
                 <a href="/movies">Movies</a>
                 <a href="/casts">Casts</a>
-                <a href="/auth/signup">Signup</a>
+                {{#if user}}
+                    <form action="/auth/logout" method="POST">
+                        <button>Logout</button>
+                    </form>
+                    <a href="/auth/secret"> Secret page </a>
+                {{else}}
+                    <a href="/auth/signup">Signup</a>
+                    <a href="/auth/login">Login</a>
+                {{/if}}
             </div>
             <div>
                 <form action="/search" method="get">

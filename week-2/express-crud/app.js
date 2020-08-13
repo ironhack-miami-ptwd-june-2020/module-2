@@ -7,7 +7,13 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const path = require('path');
 
+// const cookieParser = require('cookie-parser');
+
 const app = express();
+
+require('./config/session.config')(app);
+
+const bindUserToView = require('./config/user-in-view-local');
 
 // ============= END FILE IMPORTS ===================
 
@@ -30,6 +36,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // ========== EXPRESS VIEW ENGINE SET UP ============
 
+// app.use(cookieParser());
+
+app.use(bindUserToView);
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -49,7 +59,7 @@ app.locals.title = 'Express Template';
 
 // ===================== ROUTES =====================
 
-app.use('/', require('./routes/index'));
+app.use('/', require('./routes/index.routes'));
 app.use('/movies', require('./routes/movie-routes/movie'));
 app.use('/search', require('./routes/search-routes/search'));
 app.use('/casts', require('./routes/cast-routes/cast'));

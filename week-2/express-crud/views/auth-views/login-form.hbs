@@ -1,22 +1,17 @@
-<h2>Signup</h2>
-<form action="/auth/signup" method="POST">
+<h2>Login</h2>
+<form action="/auth/login" method="POST">
 
     <label>
-        Username
-        <input type="text" name="username" placeholder="Your username" />
-    </label>
-
-    <labels>
         Email
         <input type="email" name="email" placeholder="Your email" />
-    </labels>
+    </label>
 
     <label>
         Password
         <input type="password" name="password" placeholder="********" />
     </label>
 
-    <button type="submit">Create account</button>
+    <button type="submit">Login</button>
 
     {{!-- error message will be added here --}}
     {{#if errorMessage}}
