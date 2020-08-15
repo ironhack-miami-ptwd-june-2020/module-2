@@ -1,2 +1,37 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="container">
+    <h1>Axios POST and PUT demo - Movie Characters API</h1>
+    <hr />
+
+    <button onclick="getCharacters()">Get Characters</button>
+
+    <div class="mainViewBox">
+        {{!-- Show all characters --}}
+        <div class="row">
+            <!-- Display list of characters -->
+            <div class="col-md-12">
+                <h2>Characters List</h2>
+                <ul id="characters-list" class="list-group list-group-flush"></ul>
+            </div>
+        </div>
+
+        {{!-- Add New Character --}}
+        <div class="col-md-6">
+            <h2>Add a new character</h2>
+            <form action="#" method="POST" id="new-character-form">
+                <div class="form-group">
+                    <label for="name-input"> Name: </label>
+                    <input type="text" name="name" id="name-input" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="occupation-input"> Occupation: </label>
+                    <input type="text" name="occupation" id="occupation-input" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="weapon-input"> Weapon: </label>
+                    <input type="text" name="weapon" id="weapon-input" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary">Create a new character</button>
+            </form>
+        </div>
+    </div>
+</div>

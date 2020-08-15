@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+const mongoose = require("mongoose");
 
 const app = express();
 
@@ -51,7 +52,7 @@ app.use(
 // ============== GLOBAL VARIABLES ==================
 
 // default value for title local
-app.locals.title = "Express Template";
+app.locals.title = "Express CRUD Characters";
 
 // ============ END GLOBAL VARIABLES ================
 

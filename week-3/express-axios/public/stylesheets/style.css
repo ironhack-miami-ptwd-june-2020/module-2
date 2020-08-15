@@ -1,0 +1,25 @@
+.hide {
+    display: none;
+    visibility: hidden;
+}
+
+.mainViewBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.mainViewBox div {
+    width: 45vw;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.float-right {
+    display: flex;
+}

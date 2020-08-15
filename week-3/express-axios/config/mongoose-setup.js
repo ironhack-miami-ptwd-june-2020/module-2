@@ -5,7 +5,7 @@ mongoose.Promise = Promise;
 
 // connect Mongoose to our app's local database
 mongoose
-    .connect("mongodb://localhost/express-template", {
+    .connect("mongodb://localhost/Express-CRUD-Characters", {
         useCreateIndex: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
