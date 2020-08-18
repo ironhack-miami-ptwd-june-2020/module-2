@@ -52,7 +52,7 @@ app.use(
 // ============== GLOBAL VARIABLES ==================
 
 // default value for title local
-app.locals.title = "Express Template";
+app.locals.title = "Express CRUD Characters";
 
 // ============ END GLOBAL VARIABLES ================
 
