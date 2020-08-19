@@ -114,10 +114,13 @@ router.post('/login', (req, res, next) => {
 
 router.post('/logout', (req, res) => {
   // add code here
+  res.session.destroy();
+
+  res.redirect('/');
 });
 
 router.get('/profile', routeGuard, (req, res) => {
-  res.render('users/user-profile.hbs', { user: req.session.loggedInUser });
+  res.render('users/user-profile.hbs');
 });
 
 module.exports = router;
