@@ -9,13 +9,18 @@ router.post('/posts/:postId/comment', (req, res, next) => {
   const { postId } = req.params;
   const { content } = req.body;
 
+  // 1. find a post based on the id from the url
   Post.findById(postId)
     .then(postFromDB => {
+      // 2. create a new comment
       Comment.create({ content, author: req.session.loggedInUser._id })
         .then(newCommentFromDb => {
           // console.log(newCommentFromDb);
+
+          // 3. push the new comment's id into an array of comments that belongs to the found post
           postFromDB.comments.push(newCommentFromDb._id);
 
+          // 4. save the post with the new comments on it to the database
           postFromDB
             .save()
             .then(updatedPost => res.redirect(`/posts/${updatedPost._id}`))
