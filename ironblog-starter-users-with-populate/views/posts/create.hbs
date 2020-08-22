@@ -1,12 +1,19 @@
 <h2>Create a new post</h2>
 
-<form action="/post-create" method="POST">
+
+{{!-- enctype="multipart/form-data" ---> to be able to get req.file inside the create route  --}}
+<form action="/post-create" method="POST" enctype="multipart/form-data">
   <label>Title:
     <input type="text" name="title">
   </label>
   <br>
   <label>Content:
     <input type="text" name="content">
+  </label>
+
+  {{!-- add a new filed to enable choosing the image --}}
+  <label>Image:
+    <input type="file" name="post-image">
   </label>
 
   <button type="submit"> Create the post </button>
